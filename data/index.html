@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Scope</title>
+
+	<style>
+		body { font: 12px Arial;}
+
+		path { 
+			stroke: steelblue;
+			stroke-width: 2;
+			fill: none;
+		}
+
+		.axis path, .axis line {
+			fill: none;
+			stroke: grey;
+			stroke-width: 1;
+			shape-rendering: crispEdges;
+		}
+
+		.axis { font: 14px Arial;}
+
+	</style>
+</head>
+
+<body>
+
+<section>
+<div ng-app="myApp" ng-controller="scopeController" >
+
+	<div class="container-fluid">
+	
+		<div class="row">
+			<div class="col-sm-6">	
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="button" class="btn btn-outline-primary" ng-class="{'active':runMode==0}" ng-click="runMode=0">Pause</button>
+					<button type="button" class="btn btn-outline-primary" ng-class="{'active':runMode==1}" ng-click="runMode=1">Run</button>
+				</div>
+			</div>
+			<div class="col-sm-6">	
+				{{status}}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div line-plot model=data settings=settings  style="width:100%; height:500px">	</div>
+			</div>	
+		</div>
+		
+
+		
+		<div class="row">
+			<div class="col-sm-3">
+				Sample rate:
+				<select ng-model="settings.sampleRate" class="form-control">
+					<option  ng-repeat="x in sampleRateOptions" ng-value="x[0]">{{x[1]}}</option>
+				</select>
+			</div>
+			<div class="col-sm-3">
+				Memory depth:
+				<select ng-model="settings.memoryDepth" class="form-control">
+					<option  ng-repeat="x in memoryDepthOptions" ng-value="x[0]">{{x[1]}}</option>
+				</select>
+			</div>
+		</div>
+		
+	</div>
+	
+</div>
+</section>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<script src="./scopeController.js"></script>
+<script src="./graphDirective.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+</body>
+</html>
