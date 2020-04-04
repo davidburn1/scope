@@ -100,13 +100,17 @@ void setup() {
 
 
 
+uint32_t timer = 0;
 
 void loop() {
     webSocket.loop();
     server.handleClient();
     delay(50);
 
-    collectData();
-    //webSocket.sendBIN(0, dataStartPointer,  settings.memoryDepth*2);
-    webSocket.broadcastBIN(dataStartPointer,  settings.memoryDepth*2);
+    if ((millis() - timer) > 100) {
+      timer += 100;
+      collectData();
+      //webSocket.sendBIN(0, dataStartPointer,  settings.memoryDepth*2);
+      webSocket.broadcastBIN(dataStartPointer,  settings.memoryDepth*2);
+    }
 }
